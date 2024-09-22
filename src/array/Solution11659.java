@@ -9,6 +9,20 @@ import java.util.StringTokenizer;
 public class Solution11659 {
     public static void main(String[] args) throws IOException {
 
+        /* 백준
+        https://www.acmicpc.net/problem/11659
+           입력:
+            5 3
+            5 4 3 2 1
+            1 3
+            2 4
+            5 5
+
+            출력:
+            12
+            9
+            1
+         */
         /*
         입력부터 제대로 처리하기
         for(숫자 개수 만큽 반복){
@@ -29,12 +43,13 @@ public class Solution11659 {
         int[] S=  new int[N+1];
 
         StringTokenizer st2 = new StringTokenizer(br.readLine(), " ");
-        S[0] = Integer.parseInt(st2.nextToken());
+
+//        S[0] = Integer.parseInt(st2.nextToken());
         for (int i = 1; i < N + 1; i++) {
-            // 런타임 오류 있음 , 확인할 것.
+            // 런타임 오류 있음 , 확인할 것. --> 확인함, 47라인 토큰확인을 위한 디버깅 코드 주석처리함.
             S[i] = S[i - 1] + Integer.parseInt(st2.nextToken());
         }
-        System.out.println(Arrays.toString(S));
+//        System.out.println(Arrays.toString(S));
 
         StringBuilder sb = new StringBuilder();
 
@@ -42,7 +57,7 @@ public class Solution11659 {
             StringTokenizer st3 = new StringTokenizer(br.readLine(), " ");
             int x = Integer.parseInt(st3.nextToken());
             int y = Integer.parseInt(st3.nextToken());
-            System.out.println(S[y] - S[x - 1]);
+//            System.out.println(S[y] - S[x - 1]);
             sb.append(S[y] - S[x - 1] + "\n");
         }
 
