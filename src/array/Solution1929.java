@@ -5,6 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+
+/*
+* https://www.acmicpc.net/problem/1929
+* 입력: 3 16
+* 출력:
+        3
+        5
+        7
+        11
+        13
+* */
 public class Solution1929 {
 
     public static int[] isPrime(int m, int n) {
