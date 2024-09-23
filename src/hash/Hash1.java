@@ -13,6 +13,39 @@ public class Hash1 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
+        String str = br.readLine();
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : str.toCharArray()) {
+//            Integer i = map.get(c);
+//            if(!map.containsKey(c)){
+//                map.put(c, 1);
+//            } else {
+//                map.put(c, map.get(c) + 1);
+//            }
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+
+        System.out.println("[dbg]" + map);
+
+        int max = Integer.MIN_VALUE;
+        char result = '\0';
+
+        for (Character c : map.keySet()) {
+
+            if(map.get(c)  > max){
+                max = map.get(c);
+                result = c;
+            }
+        }
+
+        System.out.println(result);
+
+/*      by jhjeong
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+
         HashMap<Object, Integer> countMap = new HashMap<Object, Integer>();
         String str = br.readLine();
         char[] ch = str.toCharArray();
@@ -37,7 +70,6 @@ public class Hash1 {
             System.out.println("value = " + value);
         }
 
-
         char maxKey = '\0';
         int maxVal = Integer.MIN_VALUE;
 
@@ -51,7 +83,7 @@ public class Hash1 {
 
         System.out.println("maxKey = " + maxKey + ", maxVal = "+maxVal);
 
-        br.close();
+        br.close();*/
 
     }
 }
