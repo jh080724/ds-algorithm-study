@@ -1,4 +1,4 @@
-package array;
+package twopoint;
 
 public class TwoPoint {
     public static void main(String[] args) {
