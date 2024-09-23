@@ -1,39 +1,57 @@
 package hash;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Hash3 {
 
-    public static void main(String[] args) {
-        int[] cards = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // 10장의 카드
-        int k = 3; // 3장을 뽑기
-        int cnt = 0;
+    public static void main(String[] args) throws IOException {
 
-        List<List<Integer>> result = new ArrayList<>(); // 결과를 저장할 리스트
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        st = new StringTokenizer(br.readLine(), " ");
 
-        // 3중 반복문을 사용하여 모든 조합을 생성
-        for (int i = 0; i < cards.length - 2; i++) {
-            for (int j = i + 1; j < cards.length - 1; j++) {
-                for (int l = j + 1; l < cards.length; l++) {
-                    List<Integer> currentCombo = new ArrayList<>();
-                    currentCombo.add(cards[i]);
-                    currentCombo.add(cards[j]);
-                    currentCombo.add(cards[l]);
-                    result.add(currentCombo); // 현재 조합을 결과 리스트에 추가
-                    System.out.println("cnt: " + cnt++);
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        st = new StringTokenizer(br.readLine(), " ");
+        int[] arr = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        // 내림차 TreeSet 생성
+        Set<Integer> tSet = new TreeSet<>(Comparator.reverseOrder());
+//        Set<Integer> tSet = new TreeSet<>(Collections.reverseOrder()); 가능함.
+
+        // i, j 고정시키고, K 끝까지 순회하고,
+        // i, j +1부터서, K 끝까지 순회하고....
+        for (int i = 0; i < N; i++) {
+            for (int j = i + 1; j < N; j++) {
+                for (int k = j + 1; k < N; k++) {
+                    tSet.add(arr[i] + arr[j] + arr[k]);
                 }
             }
         }
 
-        // 결과 출력
-        System.out.println("카드 10장 중 3장을 뽑을 수 있는 모든 경우의 수:");
-        for (List<Integer> combo : result) {
-            System.out.println(combo);
+        // K번째 큰값 찾기
+        int count = 0;
+        for (int i : tSet) {
+            count++;
+            if(count == K){
+                System.out.println(i);
+                break;
+            }
         }
 
-        // 총 조합의 수 출력
-        System.out.println("총 조합의 수: " + result.size());
+        System.out.println(tSet);
+
+        br.close();
+
     }
 }
 
