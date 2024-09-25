@@ -18,19 +18,28 @@ public class 이진트리순회_BFS {
 
     static Node root;   // 루트 노드 담을 변수
 
-    public static void BSF(Node node) {
+    public static void BFS(Node node) {
 
         // BFS는 재귀를 사용하지 않음. 큐를 사용함.
         Queue<Node> queue = new LinkedList<>();
-
-
         queue.add(node);
+
+        int level = 0;
         while(!queue.isEmpty()){
+
+            System.out.print("[dbg] level " + level);
 
             for (int i = 0; i < queue.size(); i++) {
                 Node curr = queue.poll();
-                System.out.println(curr.data);
+                System.out.print(curr.data);
+
+                //자식 있는지 체크() 있다면 큐에 추가 없으면 넘어가기
+                if(curr.lt != null) queue.add(curr.lt);
+                if(curr.rt != null) queue.add(curr.rt);
             }
+            level++;
+            System.out.println("[dbg]");
+
         }
     }
 
